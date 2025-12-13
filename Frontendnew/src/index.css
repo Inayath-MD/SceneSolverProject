@@ -1,0 +1,97 @@
+/* --- GLOBAL STYLES & DESIGN SYSTEM (CRIME/FORENSIC THEME) --- */
+
+/* --- Google Font Variables (Imported in index.html) --- */
+:root {
+  /* Color Palette - RED THEME */
+  --primary-color: #e53935;   /* A strong, modern red */
+  --primary-hover: #c62828;  /* A darker red for hover effects */
+  --background-dark: #0f0f0f; /* Near-black for high contrast */
+  --card-background: rgba(15, 15, 15, 0.7); /* Darker, translucent card */
+  --border-color: rgba(229, 57, 53, 0.3); /* A faint red border */
+  --text-light: #e0e0e0;
+  --text-dark: #a0a0a0;
+  --text-headings: #ffffff;
+  --error-color: #ff6b6b;   /* A brighter red for errors */
+  --success-color: #55ff88;
+
+  /* Fonts */
+  --font-body: 'Roboto', sans-serif;
+  --font-heading: 'Teko', sans-serif;
+
+  /* Sizing & Radius */
+  --border-radius: 8px;
+}
+
+/* --- Global Resets & Body Styles --- */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--background-dark);
+  color: var(--text-light);
+  overflow-x: hidden;
+}
+
+/* --- Global Element Styles --- */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  color: var(--text-headings);
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+p {
+  line-height: 1.6;
+  color: var(--text-light);
+}
+
+a {
+  color: var(--primary-color);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: var(--primary-hover);
+}
+
+/* --- Reusable Container for all pages --- */
+.page-container {
+  min-height: calc(100vh - 80px); /* Full height minus navbar */
+  width: 100%;
+  padding: 40px 20px;
+  background-size: cover;
+  background-position: center center;
+  background-attachment: fixed;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative; /* For overlays */
+  top: 80px; /* Offset for fixed navbar */
+}
+
+/* Dark overlay to ensure text readability over any background */
+.page-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  /* A mix of dark and a hint of red in the overlay */
+  background: linear-gradient(rgba(15, 15, 15, 0.8), rgba(25, 0, 0, 0.9));
+  z-index: 1;
+}
+
+/* Make sure content is above the overlay */
+.page-container > * {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 1200px; /* Consistent max width */
+}

@@ -1,0 +1,19 @@
+# --- Core AI/ML Libraries ---
+torch>=2.0.0
+torchvision>=0.16.0
+numpy<2.0
+transformers==4.35.2
+ultralytics==8.0.229
+accelerate==0.25.0
+Pillow==10.1.0
+
+# --- Web Service & API ---
+Flask==3.0.0
+flask-cors==4.0.0
+python-multipart==0.0.6
+opencv-python-headless==4.8.1.78
+gunicorn==21.2.0
+requests==2.31.0
+
+# --- Audio ---
+gTTS==2.3.2

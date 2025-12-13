@@ -1,0 +1,153 @@
+.authPage {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background-size: cover;
+  background-position: center;
+}
+
+.authContainer {
+  width: 100%;
+  max-width: 420px;
+  background: var(--card-background);
+  backdrop-filter: blur(10px);
+  padding: 40px;
+  border-radius: var(--border-radius);
+  border: 1px solid var(--border-color);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  color: var(--text-light);
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.authTitle {
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 3rem;
+  color: var(--text-headings);
+}
+
+.authForm {
+  display: flex;
+  flex-direction: column;
+}
+
+.inputGroup {
+  margin-bottom: 20px;
+}
+
+.inputGroup label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 0.9rem;
+  color: var(--text-dark);
+  font-weight: bold;
+}
+
+.inputGroup input {
+  width: 100%;
+  padding: 12px 15px;
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  color: var(--text-light);
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+}
+
+.inputGroup input:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(0, 170, 255, 0.3);
+}
+
+.authButton {
+  width: 100%;
+  padding: 14px;
+  background: var(--primary-color);
+  color: var(--text-headings);
+  font-size: 1.1rem;
+  font-weight: bold;
+  border: none;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 10px;
+}
+
+.authButton:hover:not(:disabled) {
+  background: var(--primary-hover);
+}
+
+.authButton:disabled {
+  background-color: #555;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+.errorMessage, .successMessage {
+  text-align: center;
+  margin-bottom: 15px;
+  padding: 10px;
+  border-radius: var(--border-radius);
+  font-size: 0.9rem;
+}
+
+.errorMessage {
+  background: rgba(255, 85, 85, 0.1);
+  color: var(--error-color);
+  border: 1px solid var(--error-color);
+}
+
+.successMessage {
+  background: rgba(85, 255, 136, 0.1);
+  color: var(--success-color);
+  border: 1px solid var(--success-color);
+}
+
+.redirectLink {
+  margin-top: 20px;
+  text-align: center;
+  font-size: 0.9rem;
+  color: var(--text-dark);
+}
+
+.redirectLink a {
+  font-weight: bold;
+}
+/* ADD THESE STYLES TO THE BOTTOM OF Auth.module.css */
+
+.passwordWrapper {
+  position: relative;
+  width: 100%;
+}
+
+.passwordWrapper input {
+  padding-right: 45px; /* Add space for the icon */
+}
+
+.passwordToggle {
+  position: absolute;
+  top: 50%;
+  right: 15px;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: var(--text-dark);
+  cursor: pointer;
+  font-size: 1.2rem;
+  padding: 0;
+  display: flex;
+  align-items: center;
+}
+
+.passwordToggle:hover {
+  color: var(--text-light);
+}

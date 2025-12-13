@@ -1,0 +1,27 @@
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Ignore temporary uploaded files
+uploads/
+
+# Ignore virtual environments
+env/
+venv/
+
+# Ignore git repo
+.git/
+.gitignore
+
+# Ignore media files (optional)
+*.jpg
+*.jpeg
+*.png
+*.mp4
+
+# Ignore MacOS metadata
+.DS_Store
+
+# Ignore audio files created at runtime
+static/audio/*.mp3

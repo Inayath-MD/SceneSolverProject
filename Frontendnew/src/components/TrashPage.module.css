@@ -1,0 +1,115 @@
+.pageContainer {
+    padding: 30px;
+}
+
+.pageTitle {
+    font-size: 32px;
+    margin-bottom: 20px;
+}
+
+.backButton {
+    background: transparent;
+    color: #007bff;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 20px;
+    font-size: 16px;
+}
+
+.backButton:hover {
+    text-decoration: underline;
+}
+
+.statusBox {
+    padding: 20px;
+    background: #f1f1f1;
+    border-radius: 8px;
+    text-align: center;
+    font-size: 18px;
+}
+
+.errorBox {
+    background: #ffe5e5;
+    color: #d60000;
+}
+
+.emptyTrash {
+    text-align: center;
+    margin-top: 40px;
+}
+
+.emptyIcon {
+    font-size: 80px;
+    color: #888;
+    margin-bottom: 10px;
+}
+
+.trashGrid {
+    display: grid;
+    gap: 20px;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+}
+
+.trashCard {
+    position: relative;
+    background: #eee;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.cardMedia {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.cardOverlay {
+    position: absolute;
+    bottom: 70px;
+    left: 0;
+    width: 100%;
+    padding: 10px;
+    background: rgba(0,0,0,0.55);
+    color: white;
+}
+
+.actionRow {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+.restoreButton {
+    background: #29b85d;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 6px;
+    color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.restoreButton:hover {
+    background: #1e8a45;
+}
+
+.permanentDeleteButton {
+    background: #ff4747;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 6px;
+    color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.permanentDeleteButton:hover {
+    background: #d93636;
+}

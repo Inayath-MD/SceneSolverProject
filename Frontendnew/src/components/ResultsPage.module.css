@@ -1,0 +1,146 @@
+/* scenesolver-frontend/src/components/ResultsPage.module.css */
+
+.resultsContainer {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 25px;
+    padding: 20px;
+    max-width: 1600px;
+    margin: 2rem auto;
+}
+
+.resultCard {
+    background: var(--card-background);
+    backdrop-filter: blur(5px);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+}
+
+.resultCard h2 {
+    margin-top: 0;
+    color: var(--text-headings);
+    border-bottom: 2px solid var(--border-color);
+    padding-bottom: 12px;
+    margin-bottom: 20px;
+    font-size: 1.3rem;
+    display: flex;
+    align-items: center;
+}
+
+.icon {
+    margin-right: 12px;
+    color: var(--primary-color);
+}
+
+/* Layout for large screens */
+@media (min-width: 1200px) {
+    .mediaCard { grid-column: 1 / 2; grid-row: 1 / 2; }
+    .breakdownColumn { grid-column: 2 / 3; grid-row: 1 / 2; display: flex; flex-direction: column; gap: 25px; }
+    .breakdownColumn .resultCard { margin-bottom: 0; }
+    .storyCard { grid-column: 3 / 4; grid-row: 1 / 2; }
+}
+
+/* Media */
+.mediaViewer {
+    width: 100%;
+    background-color: #000;
+    border-radius: 8px;
+    overflow: hidden;
+}
+.mediaContent {
+    width: 100%;
+    display: block;
+}
+
+/* Object List */
+.objectList {
+    list-style: none; padding: 0; margin: 0;
+}
+.objectList li {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 15px;
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 6px;
+    margin-bottom: 10px;
+    font-weight: 500;
+}
+.objectList .label {
+    color: var(--text-light);
+}
+.objectList .match {
+    color: var(--primary-color);
+    font-weight: 700;
+}
+
+/* Keywords */
+.keywordList {
+    list-style: none; padding: 0; margin: 0;
+}
+.keywordList li {
+    margin-bottom: 18px;
+}
+.keywordList .label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: var(--text-light);
+}
+.progressBar {
+    width: 100%;
+    background-color: #495057;
+    border-radius: 30px;
+    height: 24px;
+    overflow: hidden;
+}
+.progress {
+    background: linear-gradient(90deg, var(--primary-color), var(--primary-hover));
+    height: 100%;
+    text-align: center;
+    color: white;
+    font-weight: bold;
+    line-height: 24px;
+    font-size: 0.85em;
+    border-radius: 30px;
+}
+
+/* Story Section */
+.storySection {
+    margin-bottom: 25px;
+}
+.storySection:last-child {
+    margin-bottom: 0;
+}
+.storySection h3 {
+    color: var(--text-headings);
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+}
+.storySection p {
+    margin: 0;
+    line-height: 1.7;
+    color: var(--text-dark);
+}
+
+.storySection .caption {
+    font-style: italic;
+    background-color: rgba(217, 4, 41, 0.1);
+    padding: 15px;
+    border-radius: 8px;
+    border-left: 4px solid var(--primary-color);
+}
+
+/* ⭐ NEW: Audio Player Styling */
+.audioPlayer {
+    width: 100%;
+    margin-top: 12px;
+    border-radius: 6px;
+    outline: none;
+    background: rgba(255, 255, 255, 0.05);
+    box-shadow: 0 0 10px rgba(217, 4, 41, 0.5);
+}

@@ -1,0 +1,103 @@
+.howItWorksContainer {
+  padding: 40px 0;
+  text-align: center;
+}
+
+.mainTitle {
+  font-size: 3.5rem;
+  margin-bottom: 1rem;
+}
+
+.subtitle {
+  font-size: 1.25rem;
+  color: var(--text-dark);
+  max-width: 700px;
+  margin: 0 auto 4rem auto;
+}
+
+.stepsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2.5rem;
+  position: relative; /* For the connecting line */
+}
+
+/* Optional: a line connecting the steps */
+.stepsGrid::before {
+  content: '';
+  position: absolute;
+  top: 60px; /* Adjust vertical position */
+  left: 10%;
+  right: 10%;
+  height: 2px;
+  background: var(--border-color);
+  z-index: -1;
+}
+
+.stepCard {
+  background: var(--card-background);
+  padding: 2.5rem;
+  border-radius: var(--border-radius);
+  border: 1px solid var(--border-color);
+  transition: all 0.3s ease-in-out;
+}
+
+.stepCard:hover {
+  transform: translateY(-10px);
+  border-color: var(--primary-color);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.stepIconWrapper {
+  width: 120px;
+  height: 120px;
+  background: rgba(0, 170, 255, 0.1);
+  border-radius: 50%;
+  margin: -60px auto 1.5rem auto; /* Pulls the icon up */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid var(--primary-color);
+}
+
+.stepIcon {
+  color: var(--primary-color);
+  font-size: 3rem;
+}
+
+.stepNumber {
+  font-family: var(--font-heading);
+  color: var(--primary-color);
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.stepTitle {
+  font-size: 2.2rem;
+  margin-bottom: 1rem;
+}
+
+.stepDescription {
+  color: var(--text-dark);
+  font-size: 1rem;
+}
+
+/* --- Mobile Responsiveness --- */
+@media (max-width: 992px) {
+  .stepsGrid {
+    grid-template-columns: 1fr;
+    gap: 4rem; /* More space between cards when stacked */
+  }
+  .stepsGrid::before {
+    top: 5%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 2px;
+    height: 90%;
+  }
+}
+
+@media (max-width: 768px) {
+    .mainTitle { font-size: 2.8rem; }
+    .subtitle { font-size: 1rem; }
+}
