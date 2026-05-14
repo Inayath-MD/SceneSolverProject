@@ -25,3 +25,7 @@ venv/
 
 # Ignore audio files created at runtime
 static/audio/*.mp3
+
+# Ignore test files and local dev files
+test_voice.mp3
+docker-compose.yml

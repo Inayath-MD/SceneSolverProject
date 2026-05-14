@@ -27,12 +27,10 @@ const LoginPage = ({ onLogin }) => {
         body: JSON.stringify({ email, password }),
       });
       const data = await response.json();
-      if (data.success&& response.ok) { // Check for success and HTTP status
-        onLogin();
+      if (data.success && response.ok) {
         localStorage.setItem('token', data.token);
-        localStorage.setItem('user', JSON.stringify(data.user)); // Store user data
+        localStorage.setItem('user', JSON.stringify(data.user));
         onLogin();
-
         navigate('/home');
       } else {
         setMessage(data.message || "Login failed. Please check your credentials.");
