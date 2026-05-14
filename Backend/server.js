@@ -11,6 +11,11 @@ const analysisRoutes = require('./routes/analysis');
 
 dotenv.config();
 const app = express();
+const fs = require('fs');
+
+// Ensure required directories exist
+fs.mkdirSync('uploads', { recursive: true });
+fs.mkdirSync('public/media', { recursive: true });
 
 // ----------- MIDDLEWARE -----------
 const allowedOrigins = process.env.CORS_ORIGIN
@@ -29,6 +34,9 @@ app.use("/api/news", newsRoutes);
 
 
 // ----------- DATABASE CONNECTION -----------
+console.log("Starting server initialization...");
+console.log("MONGO_URI is defined:", !!process.env.MONGO_URI);
+
 mongoose
   .connect(process.env.MONGO_URI)   // No deprecated options
   .then(() => {
