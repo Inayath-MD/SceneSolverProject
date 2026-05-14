@@ -52,8 +52,9 @@ const UploadPage = () => {
 
             // For multipart/form-data, we use axios directly to let it set the headers.
             // Our global `api` instance forces 'application/json', which is wrong for file uploads.
+            const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000/api';
             const res = await axios.post(
-                'http://localhost:5000/api/analysis', // Use the full, absolute URL
+                `${API_URL}/analysis`,
                 formData,
                 {
                     headers: {
