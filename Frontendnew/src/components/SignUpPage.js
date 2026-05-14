@@ -4,7 +4,8 @@ import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import styles from './Auth.module.css';
 import background from '../assets/login.jpg';
-import { FaUser, FaEnvelope, FaLock, FaEye, FaEyeSlash } from 'react-icons/fa';
+// import { FaUser, FaEnvelope, FaLock, FaEye, FaEyeSlash } from 'react-icons/fa';
+// import { FaUser } from "react-icons/fa";
 
 const SignUpPage = () => {
     // --- NEW: Add state for name ---
