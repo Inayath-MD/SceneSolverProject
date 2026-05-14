@@ -137,7 +137,7 @@ router.post('/', [auth, upload.single('media')], async (req, res) => {
 
         console.log(`📁 File moved to permanent location: ${permanentPath}`);
 
-        const fileUrl = `http://localhost:5000/media/${uniqueFilename}`;
+        const fileUrl = `${req.protocol}://${req.get('host')}/media/${uniqueFilename}`;
 
         // STEP 3: Save to DB
         const newAnalysis = new Analysis({

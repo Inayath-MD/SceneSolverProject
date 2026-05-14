@@ -13,7 +13,10 @@ dotenv.config();
 const app = express();
 
 // ----------- MIDDLEWARE -----------
-app.use(cors({ origin: 'http://localhost:3000' }));  // Allow React frontend
+const allowedOrigins = process.env.CORS_ORIGIN
+  ? process.env.CORS_ORIGIN.split(',')
+  : ['http://localhost:3000'];
+app.use(cors({ origin: allowedOrigins }));
 app.use(express.json());
 app.use(express.static('public')); // Serve static files
 
