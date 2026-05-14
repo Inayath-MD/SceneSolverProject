@@ -33,20 +33,23 @@ const newsRoutes = require("./routes/news");
 app.use("/api/news", newsRoutes);
 
 
+// ----------- START SERVER FIRST (keeps process alive on Render) -----------
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => {
+  console.log(`🚀 Server running on port ${PORT}`);
+});
+
 // ----------- DATABASE CONNECTION -----------
-console.log("Starting server initialization...");
+console.log("Starting MongoDB connection...");
 console.log("MONGO_URI is defined:", !!process.env.MONGO_URI);
+console.log("MONGO_URI starts with:", process.env.MONGO_URI ? process.env.MONGO_URI.substring(0, 20) + "..." : "undefined");
 
 mongoose
-  .connect(process.env.MONGO_URI)   // No deprecated options
+  .connect(process.env.MONGO_URI)
   .then(() => {
     console.log("✅ MongoDB connected");
-
-    const PORT = process.env.PORT || 5000;
-    app.listen(PORT, () =>
-      console.log(`🚀 Server running on port ${PORT}`)
-    );
   })
-  .catch(err =>
-    console.error("❌ MongoDB connection error:", err)
-  );
+  .catch(err => {
+    console.error("❌ MongoDB connection error:", err.message);
+    console.error("Full error:", JSON.stringify(err, null, 2));
+  });
