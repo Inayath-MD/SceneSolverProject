@@ -8,6 +8,7 @@ from PIL import Image
 from flask import Flask, request, jsonify, send_from_directory
 from werkzeug.utils import secure_filename
 from flask_cors import CORS
+import cv2
 
 import torch
 from transformers import CLIPModel, CLIPProcessor, BlipProcessor, BlipForConditionalGeneration
@@ -57,7 +58,7 @@ print("✅ All models loaded.\n")
 scene_labels = [
     "murder", "stabbing", "shooting", "robbery",
     "shoplifting", "fighting", "explosion",
-    "accident", "armed_threat", "normal"
+    "accident", "armed_threat", "screenshot", "normal"
 ]
 
 
@@ -115,8 +116,11 @@ def analyze_image(image_path):
 
     dead_terms = ["dead", "body", "corpse", "covered", "lying"]
     violence_terms = ["stab", "murder", "shot", "shooting", "kill"]
+    safe_terms = ["screen shot", "screenshot", "webpage", "text", "document"]
 
-    if any(t in caption_low for t in dead_terms + violence_terms):
+    if any(t in caption_low for t in safe_terms):
+        final_label = "normal"
+    elif any(t in caption_low for t in dead_terms + violence_terms):
         final_label = "murder"
     elif "knife" in yolo_labels:
         final_label = "stabbing"
@@ -164,12 +168,34 @@ def analyze_media():
         filepath = os.path.join(UPLOAD_FOLDER, filename)
         file.save(filepath)
 
-        if not file.mimetype.startswith("image"):
+        if not (file.mimetype.startswith("image") or file.mimetype.startswith("video")):
             os.remove(filepath)
-            return jsonify({"error": "Only images supported"}), 400
+            return jsonify({"error": "Only images and videos are supported"}), 400
+
+        is_video = file.mimetype.startswith("video")
+        target_path = filepath
+        temp_frame_path = None
+
+        if is_video:
+            # Extract the middle frame from the video using OpenCV
+            cap = cv2.VideoCapture(filepath)
+            total_frames = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
+            mid_frame = max(0, total_frames // 2)
+            cap.set(cv2.CAP_PROP_POS_FRAMES, mid_frame)
+            
+            ret, frame = cap.read()
+            cap.release()
+
+            if not ret:
+                os.remove(filepath)
+                return jsonify({"error": "Could not extract frame from video"}), 400
+                
+            temp_frame_path = filepath + "_frame.jpg"
+            cv2.imwrite(temp_frame_path, frame)
+            target_path = temp_frame_path
 
         # Analyze
-        result = analyze_image(filepath)
+        result = analyze_image(target_path)
 
         # Build story
         story_text = (
@@ -201,8 +227,10 @@ def analyze_media():
 
     finally:
         try:
-            if os.path.exists(filepath):
+            if 'filepath' in locals() and os.path.exists(filepath):
                 os.remove(filepath)
+            if 'temp_frame_path' in locals() and temp_frame_path and os.path.exists(temp_frame_path):
+                os.remove(temp_frame_path)
         except:
             pass
 
